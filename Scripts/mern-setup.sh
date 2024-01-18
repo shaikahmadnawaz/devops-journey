@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Create a new Vite React project
 npm create vite@latest client -- --template react
 cd client
