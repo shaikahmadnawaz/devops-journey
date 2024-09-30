@@ -1,0 +1,70 @@
+### Jenkins
+
+- **Jenkins** is an open-source automation server used to implement **Continuous Integration (CI)** and **Continuous Delivery (CD)** for software development projects.
+- It allows developers to automate the building, testing, and deployment of applications.
+
+### Key Features:
+
+1. **Extensibility**: Jenkins has a rich ecosystem of plugins that extend its capabilities (over 1,500 plugins available).
+
+2. **Easy Installation**: Can be installed on various operating systems and is easy to set up.
+
+3. **Distributed Builds**: Supports distributed builds across multiple machines, which helps speed up the build process.
+
+4. **Integration**: Integrates with various version control systems (e.g., Git, Subversion), build tools (e.g., Maven, Gradle), and testing frameworks.
+
+5. **Pipeline as Code**: Supports defining build pipelines in code using **Jenkinsfile**, allowing versioning and easy modifications.
+
+### Common Use Cases:
+
+- **Automating Builds**: Automatically building projects whenever code is committed.
+- **Running Tests**: Executing tests automatically to ensure code quality.
+- **Deployment**: Automating the deployment of applications to different environments (Dev, Stage, Prod).
+
+### Jenkins Architecture:
+
+- **Master-Slave Architecture**:
+  - **Master**: Controls the entire Jenkins environment and manages jobs.
+  - **Slaves (Agents)**: Execute jobs and report back to the master. This setup allows distributed build execution.
+
+### When to Use Jenkins:
+
+- For complex CI/CD workflows requiring customization and flexibility.
+- In large teams or enterprises needing centralized CI/CD management.
+- When you want full control over the CI/CD infrastructure.
+
+### When Not to Use Jenkins:
+
+- For small projects where simpler CI/CD tools are sufficient.
+- If you prefer a fully managed CI/CD service (e.g., GitHub Actions, GitLab CI).
+- When quick setup is needed, as Jenkins can be more complex to configure.
+
+### Basic Pipeline Example (Jenkinsfile):
+
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                // Commands to build the application
+                sh 'mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Commands to run tests
+                sh 'mvn test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Commands to deploy the application
+                sh 'deploy.sh'
+            }
+        }
+    }
+}
+```
+
+- Jenkins is a powerful tool for automating CI/CD processes, suitable for projects of varying sizes and complexities. With its extensive features and flexibility, it is a popular choice among development teams for improving software delivery efficiency.
