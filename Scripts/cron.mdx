@@ -1,0 +1,133 @@
+# **Cron Syntax:**
+
+Cron is a time-based job scheduler in Unix-like operating systems. The syntax for cron jobs uses five fields that specify the time and frequency of job execution. Here's the detailed breakdown of each field:
+
+#### **Cron Syntax Format:**
+
+```
+* * * * * command_to_execute
+- - - - -
+| | | | |
+| | | | |
+| | | | +----- Day of the week (0 - 7) (Sunday to Saturday, 7 is also Sunday)
+| | | +------- Month (1 - 12)
+| | +--------- Day of the month (1 - 31)
+| +----------- Hour (0 - 23)
++------------- Minute (0 - 59)
+```
+
+#### **Cron Fields in Detail:**
+
+1. **Minute** (`0-59`):  
+   This field represents the minute at which the job will run.
+
+   - Example: `15` runs the job at the 15th minute of the hour.
+
+2. **Hour** (`0-23`):  
+   Represents the hour of the day.
+
+   - Example: `5` runs the job at 5 AM.
+
+3. **Day of the Month** (`1-31`):  
+   Specifies the day of the month.
+
+   - Example: `10` runs the job on the 10th day of the month.
+
+4. **Month** (`1-12`):  
+   Specifies the month of the year.
+
+   - Example: `7` runs the job in July.
+
+5. **Day of the Week** (`0-7`, where both `0` and `7` represent Sunday):  
+   Specifies the day of the week.
+   - Example: `3` runs the job on Wednesday.
+
+#### **Special Symbols in Cron:**
+
+- **`*` (asterisk)**: Matches any value within the field.
+  - Example: `* * * * *` means every minute of every day.
+- **`,` (comma)**: Allows you to specify multiple values.
+
+  - Example: `5,10,15` means at the 5th, 10th, and 15th minute.
+
+- **`-` (hyphen)**: Specifies a range of values.
+
+  - Example: `1-5` means between 1 and 5.
+
+- **`/` (slash)**: Specifies step values, used to skip certain intervals.
+  - Example: `*/5` in the minute field means every 5 minutes.
+
+#### **Cron Expression Examples:**
+
+1. **Every Minute**:
+
+   ```
+   * * * * * command
+   ```
+
+   Runs the command every minute.
+
+2. **Every Hour**:
+
+   ```
+   0 * * * * command
+   ```
+
+   Runs the command at the start of every hour (e.g., 1:00, 2:00, 3:00).
+
+3. **Every Day at Midnight**:
+
+   ```
+   0 0 * * * command
+   ```
+
+   Runs the command at 12:00 AM every day.
+
+4. **Every Monday at 5 AM**:
+
+   ```
+   0 5 * * 1 command
+   ```
+
+   Runs the command every Monday at 5 AM.
+
+5. **Every 15 Minutes**:
+
+   ```
+   */15 * * * * command
+   ```
+
+   Runs the command every 15 minutes.
+
+6. **Twice a Day (at 6 AM and 6 PM)**:
+
+   ```
+   0 6,18 * * * command
+   ```
+
+   Runs the command at 6 AM and 6 PM every day.
+
+7. **Every Weekday at 10 PM**:
+   ```
+   0 22 * * 1-5 command
+   ```
+   Runs the command at 10 PM Monday to Friday.
+
+#### **Special Cron Schedules (Aliases):**
+
+Cron also supports shorthand notations for common schedules:
+
+- `@reboot`: Runs once at startup.
+- `@yearly` or `@annually`: Runs once a year (`0 0 1 1 *`).
+- `@monthly`: Runs once a month (`0 0 1 * *`).
+- `@weekly`: Runs once a week (`0 0 * * 0`).
+- `@daily`: Runs once a day (`0 0 * * *`).
+- `@hourly`: Runs once an hour (`0 * * * *`).
+
+#### **Example:**
+
+- **Every day at 12:30 PM**:
+  ```
+  30 12 * * * command
+  ```
+  This cron job will execute the command every day at 12:30 PM.
